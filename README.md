@@ -7,7 +7,7 @@ These memory blocks can be accessed in python via a ctypes structure. The helper
 such a structure for both windows and Linux, or raises a `FileNotFoundError` if the mapping does not (yet) exist.
 
 ```
-from pyacc import pyacc
+import pyacc
 obj = pyacc.get_mapped_object('acpmf_physics')
 print(obj.speedKmh)
 ```

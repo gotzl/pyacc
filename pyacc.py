@@ -2,7 +2,7 @@ import sys
 import mmap
 import ctypes
 
-import acc_types
+from .acc_types import *
 
 
 # https://stackoverflow.com/questions/10322974/how-to-find-out-if-a-windows-memory-mapped-file-already-exists-using-python
@@ -17,13 +17,13 @@ def check_file_is_mapped_file(file_name, file_size):
     ret = (h != INVALID_HANDLE_VALUE) and (_GetLastError() == ERROR_ALREADY_EXISTS)
     if h != INVALID_HANDLE_VALUE:
     	_CloseHandle(h)
-    return ret 
+    return ret
 
 
 types = {
-    'acpmf_physics': acc_types.SPageFilePhysics,
-    'acpmf_graphics': acc_types.SPageFileGraphic,
-    'acpmf_static': acc_types.SPageFileStatic,
+    'acpmf_physics': SPageFilePhysics,
+    'acpmf_graphics': SPageFileGraphic,
+    'acpmf_static': SPageFileStatic,
 }
 
 
