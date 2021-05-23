@@ -39,6 +39,6 @@ def get_mapped_object(name):
         # _shm = shared_memory.SharedMemory(i, create=False)
         # shm[i] = ty.from_buffer(_shm.buf)
 
-        with open('/dev/shm/%s' % name, 'r+b') as f:
+        with open('/dev/shm/%s' % name, 'wr+b') as f:
             _obj = types[name].from_buffer(mmap.mmap(f.fileno(), 0))
     return _obj

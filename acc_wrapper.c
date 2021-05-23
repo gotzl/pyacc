@@ -28,8 +28,14 @@ int main(int argc, char** argv) {
     LPDWORD ret;
     PROCESS_INFORMATION acc_pi;
     STARTUPINFO si = {sizeof(si)};
-    TCHAR* ACC_EXE = TEXT("_acc.exe");
-    
+    TCHAR* EXE = TEXT("_acc.exe");
+    TCHAR ARGS[255] = TEXT("_acc.exe");
+
+    for(int i = 1; i < argc; i++) {
+        _tcscat(ARGS, " ");
+        _tcscat(ARGS, argv[i]);
+    }
+
     int n_mappings = 3;        
     const TCHAR* mappings[] = {
         TEXT("acpmf_physics"),
@@ -39,9 +45,9 @@ int main(int argc, char** argv) {
     HANDLE maph[n_mappings], fd[n_mappings];
 
     acc_pi.dwProcessId = 0;
-    if (fileExists(ACC_EXE) && CreateProcess(NULL, ACC_EXE, NULL,  NULL, FALSE,
+    if (fileExists(EXE) && CreateProcess(EXE, ARGS, NULL,  NULL, FALSE,
             0, NULL, NULL, &si, &acc_pi) == 0 ) {
-        printf("Unable to start %s\n", ACC_EXE);
+        printf("Unable to start %s\n", ARGS);
         return 1;
     }
 
