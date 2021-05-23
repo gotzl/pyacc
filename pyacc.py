@@ -34,11 +34,12 @@ def get_mapped_object(name):
             raise FileNotFoundError('FileMapping \'%s\' does not exist.'%(map_name))
         _obj = types[name].from_buffer(mmap.mmap(-1, ctypes.sizeof(types[name]), map_name))
     else:
+        # from multiprocessing import shared_memory
         # this does not work properly since the shm is not 'owned' by python
         # and needs to persist even if the reference to the shm is removed
-        # _shm = shared_memory.SharedMemory(i, create=False)
-        # shm[i] = ty.from_buffer(_shm.buf)
+        # _shm = shared_memory.SharedMemory(name, create=False)
+        # _obj = types[name].from_buffer(_shm.buf)
 
-        with open('/dev/shm/%s' % name, 'wr+b') as f:
+        with open('/dev/shm/%s' % name, 'r+b') as f:
             _obj = types[name].from_buffer(mmap.mmap(f.fileno(), 0))
     return _obj
