@@ -59,9 +59,9 @@ class SPageFilePhysics(LittleEndianStructure):
         ('tyreTempM', c_float * 4),
         ('tyreTempO', c_float * 4),
         ('isAIControlled', c_int),
-        ('tyreContactPoint', c_float * 4 * 3),
-        ('tyreContactNormal', c_float * 4 * 3),
-        ('tyreContactHeading', c_float * 4 * 3),
+        ('tyreContactPoint', c_float * 3 * 4),
+        ('tyreContactNormal', c_float * 3 * 4),
+        ('tyreContactHeading', c_float * 3 * 4),
         ('brakeBias', c_float),
         ('localVelocity', c_float * 3),
         ('P2PActivations', c_int),
@@ -80,8 +80,8 @@ class SPageFilePhysics(LittleEndianStructure):
         ('brakePressure', c_float * 4),
         ('frontBrakeCompound', c_int),
         ('rearBrakeCompound', c_int),
-        ('padLife[4]', c_float * 4),
-        ('discLife[4]', c_float * 4),
+        ('padLife', c_float * 4),
+        ('discLife', c_float * 4),
         ('ignitionOn', c_int),
         ('starterEngineOn', c_int),
         ('kerbVibration', c_float),
@@ -96,7 +96,10 @@ class ShortWord(Array):
     _length_ = 15
 
     def __str__(self):
-        return bytes(self).decode('utf-16-le').rstrip('\x00')
+        try:
+            return bytes(self).decode('utf-16-le').rstrip('\x00')
+        except UnicodeDecodeError as e:
+            return ""
 
 
 class Word(Array):
@@ -104,7 +107,10 @@ class Word(Array):
     _length_ = 33
 
     def __str__(self):
-        return bytes(self).decode('utf-16-le').rstrip('\x00')
+        try:
+            return bytes(self).decode('utf-16-le').rstrip('\x00')
+        except UnicodeDecodeError as e:
+            return ""
 
 
 # https://gist.github.com/christoph2/9c390e5c094796903097
@@ -241,7 +247,7 @@ class SPageFileGraphic(StructureWithEnums):
         ("replayTimeMultiplier", c_float),
         ("normalizedCarPosition", c_float),
         ("activeCars", c_int),
-        ("carCoordinates", c_float * 60 * 3),
+        ("carCoordinates", c_float * 3 * 60),
         ("carID", c_int * 60),
         ("playerCarID", c_int),
         ("penaltyTime", c_float),
