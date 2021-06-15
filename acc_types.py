@@ -378,6 +378,9 @@ class CAR_MODEL(IntEnum):
     ferrari_488_gt3_evo = 24
     mercedes_amg_gt3_evo = 25
 
+    def __str__(self):
+        return carModelName[self]
+
 
 carModelName = {
     12: "Aston Martin Vantage V12 GT3 2013",
@@ -458,6 +461,47 @@ maxRPM = {
     24: 7600,
     25: 7600,
 }
+
+maxSteeringAngle = {
+    12: 320,
+    3: 360,
+    11: 320,
+    8: 320,
+    7: 283,
+    14: 360,
+    2: 240,
+    17: 310,
+    13: 360,
+    4: 310,
+    18: 310,
+    15: 320,
+    5: 240,
+    1: 320,
+    10: 320,
+    6: 320,
+    0: 400,
+    9: 400,
+    20: 320,
+    19: 360,
+    21: 310,
+    16: 310,
+    22: 240,
+    23: 400,
+    50: 360,
+    51: 320,
+    52: 360,
+    53: 246,
+    55: 360,
+    56: 360,
+    57: 290,
+    58: 450,
+    59: 240,
+    60: 246,
+    61: 400,
+    24: 240,
+    25: 320,
+}
+
 
 class SPageFileStatic(LittleEndianStructure):
     _fields_ = [
