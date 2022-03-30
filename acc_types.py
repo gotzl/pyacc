@@ -324,12 +324,14 @@ class SPageFileGraphic(StructureWithEnums):
 
 
 class CAR_CATEGORY(object):
-    classes = ["GT3 - 2018", "GT3 - 2019", "GT4", "GT3 - 2020"]
+    classes = ["GT3 - 2018", "GT3 - 2019", "GT4", "GT3 - 2020", "GT3 - 2021", "Challengers Pack – 2022"]
     modelIds = [
         [12,3,11,8,7,14,2,17,13,4,18,15,5,1,10,6,0,9],
         [20,19,21,16,22,23],
         [50,51,52,53,55,56,57,58,59,60,61],
-        [24,25]
+        [24,25],
+        [30],
+        [26,27,28,29,31]
     ]
 
     def get_category(self, carModel):
@@ -340,6 +342,7 @@ class CAR_CATEGORY(object):
 
 
 class CAR_MODEL(IntEnum):
+    """Mapping from KunosID to CarModelId"""
     amr_v12_vantage_gt3 = 12
     audi_r8_lms = 3
     bentley_continental_gt3_2016 = 11
@@ -377,6 +380,12 @@ class CAR_MODEL(IntEnum):
     porsche_718_cayman_gt4_mr = 61
     ferrari_488_gt3_evo = 24
     mercedes_amg_gt3_evo = 25
+    ferrari_488_challenge_evo = 26
+    bmw_m2_cs_racing = 27
+    porsche_992_gt3_cup = 28
+    lamborghini_huracan_st_evo2 = 29
+    bmw_m4_gt3 = 30
+    audi_r8_lms_evo_ii = 31
 
     def __str__(self):
         return carModelName[self]
@@ -420,6 +429,12 @@ carModelName = {
     61: "Porsche 718 Cayman GT4 MR 2019",
     24: "Ferrari 488 GT3 Evo 2020",
     25: "Mercedes AMG GT3 Evo 2020",
+    26: "Ferrari 488 Challenge Evo",
+    27: "BMW M2 CS Racing",
+    28: "Porsche 911 GT3 Cup (Type 992)",
+    29: "Lamborghini Huracán Super Trofeo EVO2",
+    30: "BMW M4 GT3",
+    31: "Audi R8 LMS GT3 evo II",
 }
 
 maxRPM = {
@@ -460,6 +475,12 @@ maxRPM = {
     61: 7800,
     24: 7600,
     25: 7600,
+    26: 8000,
+    27: 7520,
+    28: 8750,
+    29: 8650,
+    30: 7000,
+    31: 8650,
 }
 
 maxSteeringAngle = {
@@ -500,6 +521,12 @@ maxSteeringAngle = {
     61: 400,
     24: 240,
     25: 320,
+    26: 240,
+    27: 180,
+    28: 270,
+    29: 310,
+    30: 270,
+    31: 360,
 }
 
 
