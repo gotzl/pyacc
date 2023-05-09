@@ -1,6 +1,7 @@
 import sys
 import mmap
 import ctypes
+import ctypes.wintypes
 
 from .acc_types import *
 

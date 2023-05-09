@@ -1,4 +1,5 @@
-from ctypes import LittleEndianStructure, c_int, c_float, Array, wintypes
+from ctypes import LittleEndianStructure, c_int, c_float, Array
+import ctypes.wintypes
 from enum import IntEnum
 
 
@@ -92,7 +93,7 @@ class SPageFilePhysics(LittleEndianStructure):
 
 
 class ShortWord(Array):
-    _type_ = wintypes.WORD
+    _type_ = ctypes.wintypes.WORD
     _length_ = 15
 
     def __str__(self):
@@ -103,7 +104,7 @@ class ShortWord(Array):
 
 
 class Word(Array):
-    _type_ = wintypes.WORD
+    _type_ = ctypes.wintypes.WORD
     _length_ = 33
 
     def __str__(self):
@@ -324,14 +325,15 @@ class SPageFileGraphic(StructureWithEnums):
 
 
 class CAR_CATEGORY(object):
-    classes = ["GT3 - 2018", "GT3 - 2019", "GT4", "GT3 - 2020", "GT3 - 2021", "Challengers Pack – 2022"]
+    classes = ["GT3 - 2018", "GT3 - 2019", "GT4", "GT3 - 2020", "GT3 - 2021", "Challengers Pack - 2022", "GT3 - 2023"]
     modelIds = [
         [12,3,11,8,7,14,2,17,13,4,18,15,5,1,10,6,0,9],
         [20,19,21,16,22,23],
         [50,51,52,53,55,56,57,58,59,60,61],
         [24,25],
         [30],
-        [26,27,28,29,31]
+        [26,27,28,29,31],
+	[32,33,34]
     ]
 
     def get_category(self, carModel):
@@ -386,6 +388,9 @@ class CAR_MODEL(IntEnum):
     lamborghini_huracan_st_evo2 = 29
     bmw_m4_gt3 = 30
     audi_r8_lms_evo_ii = 31
+    ferrari_296_gt3 = 32
+    lamborghini_huracan_gt3_evo2 = 33
+    porsche_992_gt3_r = 34
 
     def __str__(self):
         return carModelName[self]
@@ -435,6 +440,9 @@ carModelName = {
     29: "Lamborghini Huracán Super Trofeo EVO2",
     30: "BMW M4 GT3",
     31: "Audi R8 LMS GT3 evo II",
+    32: "Ferrari 296 GT3",
+    33: "Lamborghini Huracan Evo2",
+    34: "Porsche 992 GT3 R",
 }
 
 maxRPM = {
